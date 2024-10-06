@@ -1,0 +1,18 @@
+package wired:input;
+
+world host {
+  import handler;
+  import types;
+}
+
+interface handler {
+  use types.{input-event};
+
+  resource input-handler {
+    constructor();
+
+    /// Handle the next recieved input event.
+    /// Events only last for one tick.
+    next: func() -> option<input-event>;
+  }
+}

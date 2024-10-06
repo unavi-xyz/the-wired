@@ -1,0 +1,61 @@
+interface types {
+  use wired:math/types.{vec3, quat};
+
+  enum hand-side { 
+    left,
+    right,
+  }
+
+  record joint {
+    translation: vec3,
+    rotation: quat,
+    radius: f32,
+  }
+
+  record finger {
+    tip: joint,
+    distal: joint,
+    proximal: joint,
+    metacarpal: joint,
+  }
+
+  /// Hand tracking data.
+  record hand {
+    side: hand-side,
+
+    thumb: finger,
+    index: finger,
+    middle: finger,
+    ring: finger,
+    little: finger,
+
+    palm: joint,
+    wrist: joint,
+    elbow: option<joint>,
+  }
+
+  /// A line with an origin and a direction.
+  record ray {
+    orientation: quat,
+    origin: vec3,
+  }
+
+  variant input-data {
+    hand(hand),
+    ray(ray),
+  }
+
+  variant input-action {
+    collision,
+    hover,
+  }
+
+  record input-event {
+    /// Unique id for the event.
+    id: u64,
+    /// The action that created the event.
+    action: input-action,
+    /// Spatial input data.
+    data: input-data,
+  }
+}

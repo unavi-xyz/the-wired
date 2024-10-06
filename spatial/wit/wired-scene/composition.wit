@@ -1,0 +1,38 @@
+interface composition {
+  use document.{document};
+  use wired:math/types.{transform};
+
+  variant asset {
+    composition(composition),
+    document(document),
+  }
+
+  resource asset-node {
+    constructor();
+
+    asset: func() -> option<asset>;
+    set-asset: func(value: option<asset>);
+
+    name: func() -> string;
+    set-name: func(value: string);
+
+    parent: func() -> option<asset-node>;
+    children: func() -> list<asset-node>;
+    add-child: func(value: borrow<asset-node>);
+    remove-child: func(value: borrow<asset-node>);
+
+    global-transform: func() -> transform;
+    transform: func() -> transform;
+    set-transform: func(value: transform);
+  }
+
+  /// A composition of assets.
+  /// Roughly equivalent to a glXF file.
+  resource composition {
+    constructor();
+
+    nodes: func() -> list<asset-node>;
+    add-node: func(value: borrow<asset-node>);
+    remove-node: func(value: borrow<asset-node>);
+  }
+}

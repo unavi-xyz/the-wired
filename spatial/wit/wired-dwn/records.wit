@@ -1,0 +1,53 @@
+interface records-query {
+  use types.{message, status};
+
+  record records-query-reply {
+    entries: list<message>,
+    status: status,
+  }
+
+  resource records-query {
+    poll: func() -> option<records-query-reply>;
+    finished: func() -> bool;
+  }
+
+  resource records-query-builder {
+    protocol: func() -> option<string>;
+    set-protocol: func(value: option<string>);
+
+    record-id: func() -> option<string>;
+    set-record-id: func(value: option<string>);
+
+    schema: func() -> option<string>;
+    set-schema: func(value: option<string>);
+
+    run: func() -> records-query;
+  }
+}
+
+interface records-write {
+  use types.{message, status};
+
+  record records-write-reply {
+    record-id: string,
+    status: status,
+  }
+
+  resource records-write {
+    poll: func() -> option<records-write-reply>;
+    finished: func() -> bool;
+  }
+
+  resource records-write-builder {
+    protocol: func() -> option<string>;
+    set-protocol: func(value: option<string>);
+
+    record-id: func() -> option<string>;
+    set-record-id: func(value: option<string>);
+
+    schema: func() -> option<string>;
+    set-schema: func(value: option<string>);
+
+    run: func() -> records-write;
+  }
+}

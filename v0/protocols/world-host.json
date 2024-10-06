@@ -1,0 +1,52 @@
+{
+  "protocol": "https://wired-protocol.org/v0/protocols/world-host.json",
+  "published": true,
+  "types": {
+    "connect-url": {
+      "dataFormat": ["text/plain"]
+    },
+    "host-info": {
+      "schema": "https://wired-protocol.org/v0/schemas/host-info.json",
+      "dataFormat": ["application/json"]
+    },
+    "world": {
+      "schema": "https://wired-protocol.org/v0/schemas/world.json",
+      "dataFormat": ["application/json"]
+    }
+  },
+  "structure": {
+    "connect-url": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": ["read"]
+        },
+        {
+          "who": "recipient",
+          "can": ["write"]
+        }
+      ]
+    },
+    "world": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": ["read", "write"]
+        }
+      ],
+      "host-info": {
+        "$actions": [
+          {
+            "who": "anyone",
+            "can": ["read"]
+          },
+          {
+            "who": "recipient",
+            "of": "world",
+            "can": ["write"]
+          }
+        ]
+      }
+    }
+  }
+}

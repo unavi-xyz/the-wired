@@ -1,0 +1,43 @@
+package wired:physics;
+
+world host {
+  import types;
+}
+
+interface types {
+  use wired:math/types.{vec3};
+
+  resource collider {
+    constructor(shape: shape);
+
+    density: func() -> f32;
+    set-density: func(value: f32);
+  }
+
+  record shape-cylinder {
+    height: f32,
+    radius: f32,
+  }
+
+  variant shape {
+    cuboid(vec3),
+    cylinder(shape-cylinder),
+    sphere(f32),
+  }
+
+  resource rigid-body {
+    constructor(rigid-body-type: rigid-body-type);
+
+    angvel: func() -> vec3;
+    set-angvel: func(value: vec3);
+
+    linvel: func() -> vec3;
+    set-linvel: func(value: vec3);
+  }
+
+  enum rigid-body-type {
+    dynamic,
+    fixed,
+    kinematic,
+  }
+}

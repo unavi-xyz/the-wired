@@ -1,0 +1,37 @@
+package wired:math;
+
+world prelude {
+  import types;
+}
+
+interface types {
+  record vec2 {
+    x: f32,
+    y: f32,
+  }
+
+  record vec3 {
+    x: f32,
+    y: f32,
+    z: f32,
+  }
+
+  record quat {
+    x: f32,
+    y: f32,
+    z: f32,
+    w: f32,
+  }
+
+  record transform {
+    rotation: quat,
+    scale: vec3,
+    translation: vec3,
+  }
+
+  /// Codegen doesn't always include types, these function force its inclusion.
+  fake-fn-a: func() -> vec2;
+  fake-fn-b: func() -> vec3;
+  fake-fn-c: func() -> quat;
+  fake-fn-d: func() -> transform;
+}

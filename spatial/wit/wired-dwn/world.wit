@@ -1,0 +1,51 @@
+package wired:dwn;
+
+world host {
+  import api;
+  import dwn;
+}
+
+interface api {
+  use dwn.{dwn};
+
+  /// Get the local user's DWN.
+  user-dwn: func() -> dwn;
+
+  /// Get the local user's default world host DWN.
+  world-host-dwn: func() -> dwn;
+}
+
+interface dwn {
+  use records-query.{records-query-builder};
+  use records-write.{records-write-builder};
+
+  resource dwn {
+    records-query: func() -> records-query-builder;
+    records-write: func() -> records-write-builder;
+  }
+}
+
+interface types {
+  record encrypted-data {
+    alg: string,
+    ciphertext: string,
+    iv: string,
+    recipients: list<string>,
+    tag: string,
+  }
+
+  variant data {
+    base64(string),
+    encrypted(encrypted-data),
+  }
+
+  record message {
+    record-id: string,
+    data: option<data>
+  }
+
+  record status {
+    code: u16,
+    detail: option<string>,
+  }
+}

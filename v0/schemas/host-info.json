@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wired-protocol.org/v0/schemas/host-info.json",
+  "type": "object",
+  "properties": {
+    "active": {
+      "description": "Whether the world is currently being hosted.",
+      "type": "boolean"
+    },
+    "numPlayers": {
+      "description": "The number of currently connected players.",
+      "type": "number"
+    },
+    "maxPlayers": {
+      "description": "The maximum number of players allowed to join.",
+      "type": "number"
+    },
+    "extras": {
+      "type": "object"
+    }
+  }
+}

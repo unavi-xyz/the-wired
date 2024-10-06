@@ -1,0 +1,16 @@
+package wired:log;
+
+world host {
+  import api;
+}
+
+interface api {
+  enum log-level {
+    debug,
+    info,
+    warn,
+    error,
+  }
+
+  log: func(level: log-level, message: string);
+}

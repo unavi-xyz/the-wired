@@ -1,0 +1,18 @@
+package wired:scene;
+
+world prelude {
+  import api;
+  import composition;
+  import document;
+  import material;
+  import mesh;
+  import node;
+  import scene;
+}
+
+interface api {
+  use composition.{composition};
+
+  /// The root composition that the script is attached to.
+  root: func() -> composition;
+}

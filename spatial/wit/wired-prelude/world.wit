@@ -1,0 +1,16 @@
+package wired:prelude;
+
+/// Prelude to be included in your world for ease of use.
+world imports {
+  import wired:input/handler;
+  import wired:log/api;
+  import wired:math/types;
+  import wired:physics/types;
+  import wired:player/api;
+  include wired:scene/prelude;
+}
+
+world script {
+  include imports;
+  include wired:script/script;
+}

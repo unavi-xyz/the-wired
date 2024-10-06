@@ -1,0 +1,21 @@
+interface document {
+  use scene.{scene};
+
+  /// A save-able collection of resources with an active scene.
+  /// Roughly equivalent to a glTF file.
+  resource document {
+    constructor();
+
+    active-scene: func() -> option<scene>;
+    set-active-scene: func(value: option<borrow<scene>>);
+
+    /// The initial active scene, set on document load.
+    /// If none is provided, the first scene will be used.
+    default-scene: func() -> option<scene>;
+    set-default-scene: func(value: option<borrow<scene>>);
+
+    scenes: func() -> list<scene>;
+    add-scene: func(value: borrow<scene>);
+    remove-scene: func(value: borrow<scene>);
+  }
+}

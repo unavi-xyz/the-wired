@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wired-protocol.org/v0/schemas/home.json",
+  "type": "object",
+  "description": "Defines a user's home world.",
+  "properties": {
+    "world": {
+      "type": "object",
+      "properties": {
+        "did": {
+          "type": "string"
+        },
+        "record_id": {
+          "type": "string"
+        }
+      },
+      "required": ["did", "record_id"]
+    }
+  },
+  "required": ["world"]
+}
